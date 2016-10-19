@@ -13,6 +13,8 @@ struct node* deleteEnd(struct node *start);
 struct node* deleteGiven(struct node* start, int r);
 struct node* searchList(struct node* start, int r);
 void display(struct node* start);
+void reverseLinkList(struct node* start);
+
 int main(void) {
 	int r, sr, ch;
 	struct node *ptr, *start;
@@ -27,7 +29,8 @@ int main(void) {
 	printf("\n6. Enter a data to delete data at given node in list");
 	printf("\n7. Enter element want to search");
 	printf("\n8. Display the list");
-	printf("\n9. Exit");
+	printf("\n9. Display the reverse link list");
+	printf("\n10. Exit");
 	scanf("%d",&ch);
 
 	switch(ch){
@@ -78,12 +81,14 @@ int main(void) {
 		display(start);
 		break;
 	case 9:
-
+		reverseLinkList(start);
+		break;
+	case 10:
 		break;
 	default:
 		printf("Invalid choice!!!");
 	}
-}while(ch != 9);
+}while(ch != 10);
 	return 0;
 }
 //insert at starting
@@ -91,7 +96,7 @@ struct node* insertStart(struct node* start, int r){
 	struct node* temp;
 	temp = (struct node*)malloc(sizeof(struct node));
 	temp->data=r;
-	temp->next=temp;
+	temp->next=start;
 	start = temp;
 	return start;
 }
@@ -220,6 +225,18 @@ struct node *searchList(struct node *start, int r){
 	return start;
 }
 
+//display the reverse link list
+void reverseLinkList(struct node* start){
+	if(start ==  NULL){
+		//for reaching to the end of the link list
+		return;
+	}
+	//now recursively call the next node of the link list
+	ReverseLinkList(start->next);
+
+	//now print the node of the link list
+	printf("%d->",start->roll);	
+}
 /*
 void insertNode(struct node **head, int data, int position){
 	struct Node *newNode;
